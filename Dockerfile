@@ -10,10 +10,10 @@ RUN docker-php-ext-install intl
 
 RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
-##synfony cli
-#RUN wget https://get.symfony.com/cli/installer -O - | bash
-#RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
-##RUN symfony server:ca:install
+#synfony cli
+RUN wget https://get.symfony.com/cli/installer -O - | bash
+RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+#RUN symfony server:ca:install
 
 # Composer
 RUN sh -c "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer"
@@ -28,5 +28,4 @@ RUN cd /app && composer install
 
 WORKDIR /app
 
-#CMD ["symfony", "server:start", "--no-tls"]
-CMD ["php", "-S", "127.0.0.1:8000", "-t", "public"]
+CMD ["symfony", "server:start", "--no-tls"]
