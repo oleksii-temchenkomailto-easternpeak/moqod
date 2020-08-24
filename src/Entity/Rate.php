@@ -2,34 +2,25 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RateRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Rate
- * @package App\Entity
+ * @ApiResource()
+ * @ORM\Entity(repositoryClass=RateRepository::class)
  */
 class Rate
 {
     /**
-     * @var string
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
-    private $field1;
+    private $id;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getField1(): ?string
-    {
-        return $this->field1;
-    }
-
-    public function setField1(string $field1): self
-    {
-        $this->field1 = $field1;
-
-        return $this;
     }
 }
