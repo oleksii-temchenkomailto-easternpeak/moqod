@@ -11,6 +11,7 @@ docker run -p 3000:8000 moqod:latest
 OR you can run app with docker-compose
 
 ```bash
+cp docker-compose.yml.example docker-compose.yml
 docker-compose up
 ```
 
