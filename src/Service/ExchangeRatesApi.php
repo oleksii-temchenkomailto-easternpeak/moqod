@@ -10,7 +10,7 @@ class ExchangeRatesApi
     const HTTPS_API_EXCHANGERATESAPI = 'https://api.exchangeratesapi.io/';
 
     /**
-     * Date label
+     * Latest date label
      */
     const DATE_LATEST = 'latest';
 
