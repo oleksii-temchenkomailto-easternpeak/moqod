@@ -18,7 +18,6 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 # Composer
 RUN sh -c "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer"
 COPY ./composer.* /app/
-RUN ls -laG /app
 RUN cd /app && composer install --ignore-platform-reqs
 
 COPY . /app
