@@ -8,7 +8,7 @@ RUN apt-get update && \
     libicu-dev
 RUN docker-php-ext-install intl
 
-RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
+#RUN apt-get update && apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
 #synfony cli
 RUN wget https://get.symfony.com/cli/installer -O - | bash
