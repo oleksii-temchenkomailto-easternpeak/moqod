@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\ExchangeRatesApi;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,14 +15,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class RateController extends AbstractController
 {
     /**
-     * @param ExchangeRatesApi $exchanger
+     * @Route("/{base}", defaults={"base"="EUR"}, name="rate_index", methods={"GET"})
+     *
+     * @param LoggerInterface $logger
+     * @param ExchangeRatesApi $exchangerRates
+     *
      * @return Response
      *
-     * @Route("/", name="rate_index", methods={"GET"})
      */
-    public function index(ExchangeRatesApi $exchanger): Response
+    public function index(string $base, LoggerInterface $logger, ExchangeRatesApi $exchangerRates): Response
     {
-        $data = $exchanger->getLatest();
-        return new JsonResponse($data);
+        try {
+            $rates = $exchangerRates->latest($base);
+        } catch (\Exception $e){
+            return new JsonResponse(['error' => $e->getMessage()]);
+        }
+        return new JsonResponse($rates);
     }
 }
