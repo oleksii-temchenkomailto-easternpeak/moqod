@@ -1,4 +1,3 @@
-#Readme
 
 ## How to run application
 
